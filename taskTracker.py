@@ -14,7 +14,6 @@ def main():
     parser.add_argument("-md","--markdone", type=str, help="Mark task as done. [id]")
     parser.add_argument("-mt","--marktodo", type=str, help="Mark task as todo. [id]")
     parser.add_argument("-mi", "--markinprogress", type=str, help="Mark task as in progress. [id]")
-    parser.add_argument('-te',"--test", type=str, help="Test the script.")
 
     args = parser.parse_args()
 
