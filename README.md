@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Task tracker is a project used to track and manage your tasks. In this task, you will build a simple command line interface (CLI) to track what you need to do, what you have done, and what you are currently working on. This project will help you practice your programming skills, including working with the filesystem, handling user inputs, and building a simple CLI application.
 
 Requirements
@@ -74,3 +75,6 @@ Write a good readme file on how to use your Task Tracker CLI.
 By the end of this project, you will have developed a practical tool that can help you or others manage tasks efficiently. This project lays a solid foundation for more advanced programming projects and real-world applications.
 
 Happy coding!
+=======
+# task-tracker
+>>>>>>> b3ca1372c7465235fe58f98fd5d8d6baa329cc0e
