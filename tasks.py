@@ -30,7 +30,7 @@ def getTask(id:str):
 
 
 def changeStatus(id:str, new_status:str):
-    print("input",id,new_status)
+    #print("input",id,new_status)
     data = file.get_data()
     tasks = data["tasks"]
     task = None
@@ -69,8 +69,8 @@ def deleteTask(id:str):
 
 def getTaskByStatus(status:str) -> list:
     data = file.get_data()
-    print("data: ",data)
+    #print("data: ",data)
     tasks_filtered = list(filter(lambda a: a["status"] == status, data["tasks"]))
-    print("tasks_filtered",tasks_filtered)
+    #print("tasks_filtered",tasks_filtered)
     return tasks_filtered
 

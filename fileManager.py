@@ -29,7 +29,7 @@ class DBTasks:
 
 
     def append(self, task:dict):
-        print("tasks received:", task)
+        #print("tasks received:", task)
         self.data["tasks"].append(task)
         self.__openFile("w")
         self.file.write(json.dumps(self.data))
@@ -40,7 +40,7 @@ class DBTasks:
     def update(self, n,task):
         self.data = self.__parse_data()
         self.data["tasks"][n] = task
-        print("new status for the task", task)
+        #print("new status for the task", task)
         self.__openFile("w")
         self.file.write(json.dumps(self.data))
         self.__close()
