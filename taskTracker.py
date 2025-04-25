@@ -1,6 +1,6 @@
 import argparse
 
-from tasks import createTask, listTasks, changeStatus, getTask, deleteTask, getTaskByStatus, updateTask
+from tasks import createTask, listTasks, changeStatus, getTask, deleteTask, getTaskByStatus, updateTask, fastSearch
 
 def main():
     parser = argparse.ArgumentParser(description='A simple CLI tool for task tracking.')
@@ -14,6 +14,7 @@ def main():
     parser.add_argument("-md","--markdone", type=str, help="Mark task as done. [id]")
     parser.add_argument("-mt","--marktodo", type=str, help="Mark task as todo. [id]")
     parser.add_argument("-mi", "--markinprogress", type=str, help="Mark task as in progress. [id]")
+    parser.add_argument('-te',"--test", type=str, help="Test the script.")
 
     args = parser.parse_args()
 
@@ -87,6 +88,11 @@ def main():
             print(result)
         else:
             print("Task not found")
+    if args.test:
+        # Call the function to test the script
+        tasks = fastSearch(args.test)
+        print("hash_map:", tasks)
+        
 
 if __name__ == "__main__":
     main()

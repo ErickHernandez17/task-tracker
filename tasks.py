@@ -4,6 +4,24 @@ from fileManager import DBTasks
 
 file = DBTasks()
 
+def fastSearch(task_id:str) -> dict:
+    data = file.get_data()
+    hash_map = {}
+    for n in range(len(data["tasks"])):
+        task_data = data["tasks"][n]
+        task_data["n"] = n
+        hash_map[data["tasks"][n]["id"]] = task_data
+    coincidences = []
+    for key, value in hash_map.items():
+        if task_id in key:
+            coincidences.append(key)
+    if len(coincidences) == 0:
+        return "Task not found"
+    elif len(coincidences) > 1:
+        return "More than one task found"
+    return coincidences[0]
+    
+
 def createTask(description:str, status:str)  -> str:
     task = {
         "id": str(uuid4()),
@@ -23,8 +41,11 @@ def listTasks() -> list:
 
 def getTask(id:str):
     data = file.get_data()
+    id_str = fastSearch(id)
+    if id_str == "Task not found": return id_str
+    if id_str == "More than one task found": return id_str
     for task in data["tasks"]:
-        if task["id"] == id:
+        if task["id"] == id_str:
             return task
     return "Task not found"
 
@@ -33,9 +54,12 @@ def changeStatus(id:str, new_status:str):
     #print("input",id,new_status)
     data = file.get_data()
     tasks = data["tasks"]
+    id_str = fastSearch(id)
+    if id_str == "Task not found": return id_str
+    if id_str == "More than one task found": return id_str
     task = None
     for n in range(len(tasks)):
-        if tasks[n]["id"] == id:
+        if tasks[n]["id"] == id_str:
             tasks[n]["status"] = new_status
             tasks[n]["updatedAt"] = str(datetime.now())
             task = tasks[n]
@@ -47,8 +71,11 @@ def changeStatus(id:str, new_status:str):
 def updateTask(id:str, description:str):
     data = file.get_data()
     tasks = data["tasks"]
+    id_str = fastSearch(id)
+    if id_str == "Task not found": return id_str
+    if id_str == "More than one task found": return id_str
     for n in range(len(tasks)):
-        if tasks[n]["id"] == id:
+        if tasks[n]["id"] == id_str:
             tasks[n]["description"] = description
             tasks[n]["updatedAt"] = str(datetime.now())
             task = tasks[n]
@@ -60,8 +87,11 @@ def updateTask(id:str, description:str):
 def deleteTask(id:str):
     data = file.get_data()
     tasks = data["tasks"]
+    id_str = fastSearch(id)
+    if id_str == "Task not found": return id_str
+    if id_str == "More than one task found": return id_str
     for n in range(len(tasks)):
-        if tasks[n]["id"] == id:
+        if tasks[n]["id"] == id_str:
             file.delete(n)
             return "Task removed"
     return "Task not found"
